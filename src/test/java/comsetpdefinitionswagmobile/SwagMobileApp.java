@@ -1,26 +1,30 @@
 package comsetpdefinitionswagmobile;
 
-import basedriver.AndroidBaseClass;
+import basedriver.BaseClass;
 import commoduledefinition.*;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.options.UiAutomator2Options;
+import io.appium.java_client.remote.AutomationName;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import utility.CommonUtils;
 
 import java.io.IOException;
+import java.time.Duration;
 
 public class SwagMobileApp {
 	public AppiumDriver driver;
 
 	public SwagMobileApp() {
-		driver = AndroidBaseClass.driver;
+		driver = BaseClass.driver;
 	}
 
 	@Given("I open the application")
 	public void i_open_the_application() throws IOException {
-		CommonUtils.loadConfigProp("AndroidSwagMobileTestApp.properties");
+		CommonUtils.loadConfigProp("Android.properties");
 		CommonUtils.setCapabilities();
+
 		driver = CommonUtils.getDriver();
 	}
 

@@ -1,8 +1,7 @@
 package utility;
 
 import hookdefinitions.HookIntialisation;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+
 import org.openqa.selenium.*;
 import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,27 +16,24 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Calendar;
 import java.util.Properties;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 public class HandlingElementValidation {
 	public static Properties OR;
-	private static final Logger Log = LogManager.getLogger(HookIntialisation.class);
 
 	public static boolean ElementPresent(WebDriver driver, WebElement element) {
 		if (element.isDisplayed() == true && element.isEnabled() == true) {
-			Log.info("The element is visible : " + element);
 			return true;
 		} else {
-			Log.error("The element is not visible : " + element);
 			return false;
 		}
 	}
 
 	public static boolean ElementPresentAndSelected(WebDriver driver, WebElement element) {
 		if (element.isDisplayed() == true && element.isSelected() == true) {
-			Log.info("The element is visible : " + element);
 			return true;
 		} else {
-			Log.error("The element is not visible : " + element);
 			return false;
 		}
 	}
@@ -46,10 +42,8 @@ public class HandlingElementValidation {
 		if (element.isDisplayed() == true && element.isEnabled() == true) {
 			Select drp = new Select(element);
 			drp.selectByVisibleText(data);
-			Log.info("The element is visible : " + element);
 			return true;
 		} else {
-			Log.error("The element is not visible : " + element);
 			return false;
 		}
 	}
@@ -58,10 +52,8 @@ public class HandlingElementValidation {
 		if (element.isDisplayed() == true && element.isEnabled() == true) {
 			element.clear();
 			element.sendKeys(data);
-			Log.info("The element is visible : " + element);
 			return true;
 		} else {
-			Log.error("The element is not visible : " + element);
 			return false;
 		}
 	}
@@ -71,10 +63,8 @@ public class HandlingElementValidation {
 			element.clear();
 			JavascriptExecutor sk = (JavascriptExecutor) driver;
 			sk.executeScript("arguments[0].value='" + data + "';", element);
-			Log.info("The element is visible : " + element);
 			return true;
 		} else {
-			Log.error("The element is not visible : " + element);
 			return false;
 		}
 	}
@@ -97,10 +87,8 @@ public class HandlingElementValidation {
 	public boolean UploadSendkeys(WebDriver driver, WebElement element, String pathToUpload) {
 		if (element.isDisplayed() == true) {
 			element.sendKeys(pathToUpload);
-			Log.info("The element is visible : " + element);
 			return true;
 		} else {
-			Log.error("The element is not visible : " + element);
 			return false;
 		}
 	}
@@ -114,7 +102,6 @@ public class HandlingElementValidation {
 		// if its not there we will create it
 		File d = new File(dirname);
 		if (d.exists() == true) {
-			Log.info("Screenshot folder available");
 		} else {
 			d.mkdirs();
 		}

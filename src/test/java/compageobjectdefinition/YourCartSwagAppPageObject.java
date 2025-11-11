@@ -1,6 +1,6 @@
 package compageobjectdefinition;
 
-import basedriver.AndroidBaseClass;
+import basedriver.BaseClass;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class YourCartSwagAppPageObject extends AndroidBaseClass {
+public class YourCartSwagAppPageObject extends BaseClass {
 
 	public YourCartSwagAppPageObject(AppiumDriver driver) {
 		super(driver);

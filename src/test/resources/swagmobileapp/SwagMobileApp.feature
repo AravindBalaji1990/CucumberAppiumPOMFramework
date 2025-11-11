@@ -1,9 +1,10 @@
 Feature: To Run the Swag Labs Mobile App
 
-  Background: 
-
-  Scenario: Validate a valid login user
+  Background:
     Given I open the application
+
+  @test
+  Scenario: Validate a valid login user
     Then I verify the application login screen
     When I enter the username "standard_user"
     And I enter the password "secret_sauce"
@@ -11,7 +12,6 @@ Feature: To Run the Swag Labs Mobile App
     Then I will be able to view the dashboard screen
 
   Scenario: Validate a problem user to check error message
-    Given I open the application
     Then I verify the application login screen
     When I enter the username "locked_out_user"
     And I enter the password "secret_sauce"
@@ -19,7 +19,6 @@ Feature: To Run the Swag Labs Mobile App
     Then I verify error "Sorry, this user has been locked out."
 
   Scenario: Add an item to cart and complete the order
-    Given I open the application
     Then I verify the application login screen
     When I enter the username "standard_user"
     And I enter the password "secret_sauce"
@@ -32,7 +31,6 @@ Feature: To Run the Swag Labs Mobile App
     Then I verify the order completion
 
   Scenario: Add an item to cart and complete the order
-    Given I open the application
     Then I verify the application login screen
     When I enter the username "standard_user"
     And I enter the password "secret_sauce"
@@ -43,9 +41,8 @@ Feature: To Run the Swag Labs Mobile App
     Then I enter the check out information as empty
     Then I verify error "First Name is required"
 
-    @test
+
     Scenario: Add/remove the items from cart
-    Given I open the application
     Then I verify the application login screen
     When I enter the username "standard_user"
     And I enter the password "secret_sauce"
