@@ -5,6 +5,7 @@ import commoduledefinition.*;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.remote.AutomationName;
+import io.cucumber.java.After;
 import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
@@ -39,6 +40,11 @@ public class SwagMobileApp {
     @Before
     public void before(Scenario scenario) throws IOException {
         this.scenario = scenario;
+    }
+
+    @After
+    public void after() {
+        driver.quit();
     }
 
     @AfterStep
