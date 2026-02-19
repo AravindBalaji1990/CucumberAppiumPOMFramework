@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 public class BaseClass {
     public static AppiumDriver driver;
 
+    //Constructor to initilaise the drivers
     public BaseClass(AppiumDriver driver2) {
         this.driver = driver2;
         loadElements();

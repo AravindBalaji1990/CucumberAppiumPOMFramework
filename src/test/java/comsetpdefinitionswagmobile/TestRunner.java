@@ -12,7 +12,7 @@ import java.io.IOException;
 		features = "src/test/resources/swagmobileapp",
 		glue = { "hookdefinitions","comsetpdefinitionswagmobile" },
 		monochrome = true, 
-		plugin = { "pretty", "html:target/cucumber"},
+		plugin = { "pretty", "html:target/cucumber-html-report.html"},
 		dryRun = false
 		, tags="@test")
 public class TestRunner {
