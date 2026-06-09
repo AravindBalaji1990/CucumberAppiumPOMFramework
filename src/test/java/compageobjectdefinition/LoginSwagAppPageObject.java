@@ -15,6 +15,9 @@ public class LoginSwagAppPageObject extends BaseClass {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 	}
 
+	// the below webelement is defined for both android and ios and its differentiated by the annotations
+//	iOSXCUITFindBy - ios
+//			AndroidFindBy - andorid
 	@iOSXCUITFindBy(xpath = "//*[@text='Username' ]")
 	@AndroidFindBy(xpath = "//*[@text='Username' and @content-desc='test-Username']")
 	public static WebElement txt_username;

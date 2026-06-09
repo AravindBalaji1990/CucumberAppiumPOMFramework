@@ -1,7 +1,5 @@
 package utility;
 
-import hookdefinitions.HookIntialisation;
-
 import org.openqa.selenium.*;
 import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -16,8 +14,6 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Calendar;
 import java.util.Properties;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
 
 public class HandlingElementValidation {
 	public static Properties OR;

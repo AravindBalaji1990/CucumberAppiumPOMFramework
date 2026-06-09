@@ -28,18 +28,20 @@ public class SwagMobileApp {
         driver = BaseClass.driver;
     }
 
-    @Given("I open the application")
-    public void i_open_the_application() throws IOException {
-        CommonUtils.loadConfigProp("Android.properties");
-        CommonUtils.setCapabilities();
-
-        // whether we get the andorid driver or ios driver here we are initialising it
-        driver = CommonUtils.getDriver();
-    }
-
     @Before
     public void before(Scenario scenario) throws IOException {
         this.scenario = scenario;
+        // Load Android configuration from properties file
+        CommonUtils.loadConfigProp("Android.properties");
+
+        // Set the desired capabilities
+        CommonUtils.setCapabilities();
+
+        // Get the AppiumDriver instance - use getDriver() which starts Appium server
+        driver = CommonUtils.getDriver();
+
+        // Initialize BaseClass with the driver for page object initialization
+        new BaseClass(driver);
     }
 
     @After
@@ -62,7 +64,7 @@ public class SwagMobileApp {
         }
     }
 
-    @Then("I verify the application login screen")
+    @Given("I verify the application login screen")
     public void i_verify_the_application_login_screen() {
         LoginSwagApp loginswagapp = new LoginSwagApp(driver);
         loginswagapp.verifyLogin(driver);

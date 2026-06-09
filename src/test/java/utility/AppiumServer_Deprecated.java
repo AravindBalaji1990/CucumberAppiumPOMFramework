@@ -2,7 +2,7 @@ package utility;
 
 import java.io.IOException;
 
-public class AppiumServer {
+public class AppiumServer_Deprecated {
 
 	// Appium Launch on Windows
 	private static Process process;

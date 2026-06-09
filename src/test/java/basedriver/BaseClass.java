@@ -5,7 +5,11 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.support.PageFactory;
 
 public class BaseClass {
+
+    //appiumdriver is nothing but the parent of all
+    // the driver so it consists both the android driver and iosdriver
     public static AppiumDriver driver;
+
 
     //Constructor to initilaise the drivers
     public BaseClass(AppiumDriver driver2) {

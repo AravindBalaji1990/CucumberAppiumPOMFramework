@@ -20,6 +20,7 @@ import java.util.concurrent.TimeUnit;
 
 public class CommonUtils {
 
+	private static String AUTOMATION_NAME;
 	private static Properties prop = new Properties();
 	public static int EXPLICIT_WAIT_TIME;
 	public static int IMPLICIT_WAIT_TIME;
@@ -55,8 +56,7 @@ public class CommonUtils {
 //		APPLICATION_NAME = prop.getProperty("application.path");
 		BASE_PKG = prop.getProperty("appPackage");
 		APP_ACTIVITY = prop.getProperty("appActivity");
-		APPIUM_PORT = prop.getProperty("appium.server.port");
-//		AUTOMATION_INSTRUMENTATION = prop.getProperty("automation.instumentation");
+		AUTOMATION_NAME = prop.getProperty("automationName");
 		DEVICE_NAME = prop.getProperty("deviceName");
 //		BROWSER_NAME = prop.getProperty("browser.name");
 		PLATFORM_NAME = prop.getProperty("platformName");
@@ -67,14 +67,15 @@ public class CommonUtils {
 	}
 
 	public static void setCapabilities() {
-//		capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, CommonUtils.BROWSER_NAME);
-//		capabilities.setCapability("appium:platformVersion", CommonUtils.PLATFORM_VERSION);
+		// Reset capabilities to ensure fresh state
+		capabilities = new DesiredCapabilities();
+
+		// Set all required capabilities for Android
 		capabilities.setCapability("appium:platformName", CommonUtils.PLATFORM_NAME);
+		capabilities.setCapability("appium:automationName", CommonUtils.AUTOMATION_NAME);
 		capabilities.setCapability("appium:udid", CommonUtils.DEVICE_NAME);
-//		capabilities.setCapability("appium:newCommandTimeout", CommonUtils.NEW_COMMAND_TIMEOUT);
 		capabilities.setCapability("appium:appActivity", CommonUtils.APP_ACTIVITY);
 		capabilities.setCapability("appium:appPackage", CommonUtils.BASE_PKG);
-        capabilities.setCapability("appium:automationName","UIAutomator2");
 	}
 
 	public static AppiumDriver getDriver() throws MalformedURLException {
@@ -82,7 +83,7 @@ public class CommonUtils {
 				.withIPAddress("127.0.0.1").usingPort(4723).withTimeout(Duration.ofSeconds(200))
 				.build().start();
 
-        driver = new AndroidDriver(new URL("http://127.0.0.1:4723/"), capabilities);
+        driver = new AppiumDriver(new URL("http://127.0.0.1:4723/"), capabilities);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
 		return driver;
 	}
@@ -130,8 +131,16 @@ public class CommonUtils {
 	
 	public static AppiumDriver getIOSDriver() throws MalformedURLException {
 //		serverUrl = new URL("http://localhost:" + APPIUM_PORT + "/wd/hub");
+		driver = new IOSDriver(serverUrl, capabilities);
+//        driver = new AndroidDriver(new URL("http://127.0.0.1:4723/"), capabilities);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+		return driver;
+	}
+
+	public static AppiumDriver getAndDriver() throws MalformedURLException {
+//		serverUrl = new URL("http://localhost:" + APPIUM_PORT + "/wd/hub");
 //		driver = new IOSDriver(serverUrl, capabilities);
-        driver = new AndroidDriver(new URL("http://127.0.0.1:4723/"), capabilities);
+		driver = new AndroidDriver(new URL("http://127.0.0.1:4723/"), capabilities);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
 		return driver;
 	}
